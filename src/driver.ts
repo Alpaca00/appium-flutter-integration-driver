@@ -116,6 +116,7 @@ export class AppiumFlutterDriver extends BaseDriver<FlutterDriverConstraints> {
          command: 'dragAndDrop',
          params: {
             required: ['source', 'target'],
+            optional: ['elementOptions'],
          },
       },
       'flutter: launchApp': {
@@ -325,13 +326,14 @@ export class AppiumFlutterDriver extends BaseDriver<FlutterDriverConstraints> {
       );
    }
 
-   async dragAndDrop(source: any, target: any) {
+   async dragAndDrop(source: any, target: any, elementOptions: any) {
       return this.proxy?.command(
          `/session/:sessionId/appium/gestures/drag_drop`,
          'POST',
          {
             source,
             target,
+            elementOptions,
          },
       );
    }
